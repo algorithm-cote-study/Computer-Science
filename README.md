@@ -27,6 +27,10 @@
 
 ```
 
+## <img src="https://img.icons8.com/doodle/48/null/blossom-powerpuff-girls.png"  width="30" height="30" style="padding: 0;margin-bottom:-5px;" /> 중요도 <img src="https://img.icons8.com/doodle/48/null/bubbles-powerpuff-girls.png" width="30" height="30" style="padding: 0;margin-bottom:-5px;"/>
+
+## 중요도에 따라서 파워퍼프걸 얼굴 붙일거다 왜 파워퍼프걸이냐면 귀여우니깐 <img src="https://img.icons8.com/doodle/48/null/blossom-powerpuff-girls.png"  width="30" height="30" style="padding: 0;margin-bottom:-5px;" /> <img src="https://img.icons8.com/doodle/48/null/bubbles-powerpuff-girls.png" width="30" height="30" style="padding: 0;margin-bottom:-5px;"/> <img src="https://img.icons8.com/doodle/48/null/buttercup-powerpuff-girls.png" width="30" height="30" style="padding: 0;margin-bottom:-5px;"/>
+
 ## <img src="https://img.icons8.com/color/48/null/folder-tree.png" width="30" height="30" style="padding: 0;margin-bottom:-5px;"/> CS 전공지식 분류
 
 ### Chapter1. 자료구조
