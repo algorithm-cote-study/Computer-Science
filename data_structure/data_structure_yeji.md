@@ -100,6 +100,20 @@ Q. <img src="https://img.icons8.com/doodle/48/null/blossom-powerpuff-girls.png" 
 
 ```
 
+- not fail-fast Enumeration은 무엇인가?
+
+```
+java에서는 데이터를 하나씩 제공해주는  Iterator, Enumeration 인터페이스가 있습니다.
+Iterator는 자바의 컬렉션 프레임워크에서 컬렉션에 저장되어 있는 요소들을 읽어오는 방법입니다.
+Enumeration은 객체들의 집합에서 각각의 객체들을 한순간에 하나씩 처리할 수 있는 메소드를 제공하는 컬렉션 입니다.
+
+이 둘의 가장 큰 차이점은 fail-fast 방식 개념입니다.
+Iterator는 순차적 접근이 모두 끝나기 전에 컬렉션 객체에 변경이 일어날 경우 순차적 접근이 실패되면서 예외를 return하게 되는데 이를 fail-fast방식이라고 부릅니다.
+반면 Enumeration은 순차적 접근 시 컬렉션 객체에 변경이 일어나도 이를 무시하고 끝까지 동작하기 때문에 not-fail-fast방식이라고 부릅니다.
+
+** Iterator는 thread-safe하지 않음, Enumeration은 thread-safe 함 
+```
+
 </div>
 </details>
 
