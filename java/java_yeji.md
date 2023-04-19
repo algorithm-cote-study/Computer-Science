@@ -197,7 +197,7 @@ Stream은 반복을 알아서 처리하고 결과 스트림 값을 어딘가에 
 </div>
 </details>
 
-## 추상클래스와 인터페이스 차이
+## 4. 추상클래스와 인터페이스 차이
 
 <details>
 <summary>꼬꼬무</summary>
@@ -215,3 +215,211 @@ Q. Stream vs Collection
 
 </div>
 </details>
+
+
+## 5. Generic이란 무엇인가요?
+
+```
+
+제네릭은 다양한 타입의 객체들이 이용하는 메소드나 컬렉션 클래스을 컴파일 단계에서
+타입 체크를 해주는 기능 입니다.
+
+```
+
+<details>
+<summary>내용정리</summary>
+<div markdown="1">
+
+- 제네릭 와일드카드
+
+```
+
+제네릭타입<?> : 타입파라미터 대치 모든 클래스, 인터페이스 타입
+제네릭타입<? extends 상위타입> : 와일드카드 범위 특정 객체의 하위 클래스
+제네릭타입<? super 하위타입> : 와일드카드 범위 특정 객체의 상위 클래스
+
+```
+
+- 자주 사용하는 타입인자
+
+| 타입 파라미터 | 용도      | 타입 파라미터 용도 | 용도     |
+|---------|---------|------------|--------|
+| `<T>`   | Type    | `<N>`      | Number |
+| `<E>`   | Element | `<V>`      | Value  |
+| `<K>`   | Key     | `<R>`      | Result |
+
+- Collection의 자료구조 별 시간 복잡도
+
+```
+- ArrayList
+add             : O(1)
+remove          : O(n)
+get             : O(1)
+Contains        : O(n)
+iterator.remove : O(n)
+java 1.2에 추가, thread-safe 보장 안함
+ 특징 :  데이터 추가,삭제를 위해 임시 배열을 생성해 데이터를 복사
+   - 대량의 자료를 추가/삭제시 복사가 일어 나게 되어 성능 저하를 일이킴
+   - 데이터의 인덱스를 가지고 있어 데이터 검색시 빠름
+
+- LinkedList
+add             : O(1)
+remove          : O(1)
+get             : O(n)
+Contains        : O(n)
+iterator.remove : O(1)
+java 1.2에 추가, thread-safe 보장 안함
+특징 : 데이터를 저장하는 각 노드가 이전 노드와 다음 노드의 상태만 알고 있다.
+   - 데이터 추가/삭제시 빠름
+   - 데이터 검색시 처음부터 노드를 순화해야 되기 때문에 느림
+
+
+- HashSet
+add         :   O(1)
+contains    :   O(1)
+next        :   o(h/n) h는 테이블 용량
+java 1.2 thread-safe 보장 안함
+특징 : 객체들을 순서없이 저장하고 동일한 객체를 중복 저장하지 않는다.
+    - 중복되지 않는 값을 등록할때 용의
+    - 순서없이 저장되는것 주위
+    - null을 허용한다.
+    
+- LinkedHashSet
+add       : O(1)
+contains  : O(1)
+next      : O(1)
+java 1.4 thread-safe 보장 안함
+특징 : 속도는 hashSet에 비해 느리지만 좋은 성능을 보장한다.
+    - 등록한 순으로 정렬을 한다.
+    - null을 허용한다.
+   
+- TreeSet
+시간복잡도
+add       : O(log n)
+contains  : O(log n)
+next      : O(long n)
+java 1.2 에서 나옴 thread-safe 보장 안함
+특징 : 객체기준으로 정렬을 한다. 느리다.
+    - null을 허용하지 않는다.
+    -  Red-Black-Tree 구조
+    
+- HashMap
+시간복잡도
+get           : O(1)
+containsKey   : O(1)
+next          : O(h/n) h는 테이블 용량
+java 1.2 에서 나옴
+특징 : 순서에 상관없이 저장됨, Null을 허용한다. thread-safe 보장하지 않는다.
+
+- LinkedHashMap
+시간복잡도
+get           : O(1)
+containsKey   : O(1)
+next          : O(1)
+java 1.4 에서 나옴
+특징 : 순서대로 등록한다. Null을 허용한다. thread-safe 보장하지 않는다.
+
+- TreeMap
+시간복잡도
+get           : O(log n)
+containsKey   : O(log n)
+next          : O(log n)
+java 1.2 에서 나옴
+특징 : 정렬이 되면서 추가가 됨
+     -  null은 허용하지 않음
+     -  thread-safe 보장하지 않는다.
+     -  Red-Black-Tree 구조
+
+- ConcurrentHashMap
+시간복잡도
+get           : O(1)
+containsKey   : O(1)
+next          : O(h/n) h는 테이블
+java 1.5 에서 나옴
+특징 :  thread-safe 보장하면서 SynchronizedMap 보다 속도가 빠르다
+      - null을 허용하지 않음
+
+```
+
+</div>
+</details>
+
+<details>
+<summary>꼬꼬무</summary>
+<div markdown="1">
+
+Q. 제네릭을 사용해야되는 이유?
+
+```
+
+제네릭 타입을 사용함으로써 잘못된 타입이 사용될 수 있는 문제를 컴파일 과정에서 제거할 수 있다.
+실행 시 타입 에러가 나는것보다는 컴파일 시에 에러를 사전에 방지하는 것이 좋다. 
+또 제네릭 코드를 사용하면 타입을 국한하기 때문에 요소를 찾아올 때 타입변환을 할 필요가 없어 프로그램 성능이 향상된다.
+
+```
+
+Q. 제네릭의 장,단점
+
+```
+
+우선 가장큰 장점으로는 타입체크 입니다.
+컴파일 타임에 타입 체크를 하기 때문에 런타임에서 ClassCastException과 같은 UncheckedException을 보장받습니다
+또한 타입체크와 형변환 생략이 가능하므로 코드가 간결해집니다. 
+단점으로는 제네릭은 인스턴스 변수로 간주되기 때문에 static 멤버는 타입변수 제네릭을 사용하지 못합니다.
+또한 new, instanceof 연산자의 경우 컴파일 시점에 타입을 명확하게 알아야되기 때문에 제네릭을 피연산자로 사용할 수 없습니다.
+
+```
+
+
+</div>
+</details>
+
+## 6. Collection framework란 무엇인가요?
+
+```
+
+자바에서 데이터를 저장하는 클래스들을 표준화한 설계구조입니다.
+Collection은 크게 List, Set, Map 으로 나뉠 수 있습니다.
+ List와 Set 인터페이스는 모두 Collection 인터페이스를 상속받지만, 구조상의 차이로 인해 Map 인터페이스는 별도로 정의됩니다.
+
+```
+
+<details>
+<summary>꼬꼬무</summary>
+<div markdown="1">
+
+Q. List, Set, Map을 각각 비교하여 설명해주세요.
+
+```
+
+List는 순서가 있는 데이터 집합으로 중복이 허용됩니다. 반면 Set은 순서를 유지하지 않을 뿐만 아니라 데이터의 중복도 허용되지 않습니다.
+Map은 List,Set과 다르게 key,value 쌍으로 주어진 데이터 집합으로 순서가 유지되며, 키 중복은 안되지만 값 중복은 가능합니다. 
+
+```
+
+Q. Collection framework에서 가장 빠른 자료구조는 무엇인가요?
+
+```
+
+Collection framework에서 가장 빠른 자료구조는 Map입니다.
+HashMap은 데이터 삽입,삭제,검색 시 O(1)의 시간 복잡도를 가지고 있습니다.
+
+```
+ 
+</div>
+</details>
+
+
+### <img src="https://img.icons8.com/doodle/48/null/blossom-powerpuff-girls.png"  width="25" height="25" style="padding: 0;margin-bottom:-5px;" /> 6-1. HashMap 과 Hashtable의 차이
+
+```
+
+크게 4가지의 차이점이 있습니다.
+첫번째로, Thread-safe의 여부입니다. Hashtable은 Thread-safe하고 HashMap은 Thread-safe하지 않습니다. 그렇기에
+멀티스레드 환경이 아니라면 HashMap을 쓰는 것이 좋습니다.
+두번째로, Null값의 허용 여부입니다. HashMap은 key에 null을 허용하지만 Hashtable은 key에 null을 허용하지 않습니다.
+세번째로, Enumeration의 여부입니다. Hashtable은 not fail-fast Enumeration을 제공하지만, HashMap은 Enumeration을 제공하지 않습니다.
+마지막으로 HashMap은 보조해시를 사용하기 때문에 보조 해시 함수를 사용하지 않는 Hashtable에 비하여 해시 충돌(hash collision)이 덜 발생할 수 있어 상대적으로 성능상 이점이 있습니다.
+
+```
+
